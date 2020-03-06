@@ -1,0 +1,91 @@
+@import './variables';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: tomato;
+    width: 80%;
+    height: 60vh;
+    border-radius: 1%;
+    font-family: $font-family;
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-basis: 20%;
+      text-align: center;
+      color: $font-color;
+      h1 {
+        font-size: 2rem;
+        color: palegreen;
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: 1.6rem;
+        
+      }
+    }
+
+    &__panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-basis: 60%;
+      width: 100%;
+    }
+
+    &__button {
+      text-align: center;
+      width: 150px;
+      height: 50px;
+      border: 2px solid white;
+
+    }
+
+    &__score {
+      flex-basis: 20%;
+    }
+  }
+
+  label {
+    font-size: 1.1rem;
+    color: $font-color;
+  }
+  
+  input {
+    width: 200px;
+    height: 25px;
+  }
+  
+  select {
+    width: 100px;
+    height: 31px;
+  }
+
+  @media (min-width: 640px) and (orientation: landscape) {
+    .container {
+      max-width: 70%;
+    }
+  }
+
+  @media (min-width: 1024px) and (orientation: landscape) {
+    .container {
+      max-width: 50%;
+    }
+  }
+
+  @media (min-width: 1280px) and (orientation: landscape) {
+    .container {
+      max-width: 40%;
+    }
+  }
