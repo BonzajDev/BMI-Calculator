@@ -1,32 +1,67 @@
 const heightUnits = document.getElementById('heightunits');
+const weightUnits = document.getElementById('weightunits');
 const button = document.querySelector('button');
+let formula = '';
 
-const getUnitValue = () => {
+const getHeightUnitValue = () => {
     const units = heightUnits.options[heightUnits.selectedIndex].value;
     let unitValue = '';
 
     if (units === 'cm') {
         unitValue = 100;
-    } else if (units === 'ft') {
-        unitValue = 25;
+        weightUnits.selectedIndex = 1;
+        formula = 'metric';
 
     } else if (units === 'inch') {
-        unitValue = 50;
+        weightUnits.selectedIndex = 2;
+        formula = 'imperial';
     }
+
     return unitValue;
 }
+
+const getWeightUnitValue = () => {
+    const units = weightUnits.options[weightUnits.selectedIndex].value;
+
+    if (units === 'kg') {
+        heightUnits.selectedIndex = 1;
+        formula = 'metric';
+
+    } else if (units === 'lbs') {
+        heightUnits.selectedIndex = 2;
+        formula = 'imperial';
+    }
+}
+
+
 
 const getBMI = () => {
     const weight = document.querySelector('.weight').value;
     const height = document.querySelector('.height').value;
+    let value = '';
+    const metricBmiFormula = (weight / ((height * height) / getHeightUnitValue()) * 100);
+    const imperialBmiFormula = 703 * weight / (height * height);
 
+    if (formula === 'imperial') {
+        value = imperialBmiFormula;
+    } else if (formula === 'metric') {
+        value = metricBmiFormula;
+    }
 
-    const bmi = (weight / ((height * height) / getUnitValue()) * 100);
-    console.log(bmi);
-    return bmi;
+    return value;
+}
 
+const displayBMI = () => {
+    const score = document.querySelector('.container__score');
+    const element = document.createElement('p');
+    const value = getBMI();
+    console.log(value);
+    element.textContent = value;
+    score.appendChild(element);
 }
 
 
-heightUnits.addEventListener('change', getUnitValue);
-button.addEventListener('click', getBMI);
+
+heightUnits.addEventListener('change', getHeightUnitValue);
+weightUnits.addEventListener('change', getWeightUnitValue);
+button.addEventListener('click', displayBMI);
