@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Minimalist Webpack Boilerplate
 
 ## Instructions
@@ -17,3 +18,6 @@
 * Hot Module Reload - browser reloads whenever a js or scss file changes
 
 * You can change the port on webpack.config.js on line 22
+=======
+# BMI-Calculator
+>>>>>>> 2192552020e68e7dc2a2136ed72263b34a5be3c4
