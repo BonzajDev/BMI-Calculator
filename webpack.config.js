@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const env = process.env.NODE_ENV;
 
 module.exports = {
-  entry: './app/index.js',
+  entry: './src/js/index.js',
 
   mode: env,
 
@@ -24,8 +24,7 @@ module.exports = {
   },
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: 'babel-loader'
@@ -43,7 +42,9 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({template: './app/index.html'}),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
