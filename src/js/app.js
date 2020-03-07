@@ -16,7 +16,6 @@ const getHeightUnitValue = () => {
         weightUnits.selectedIndex = 2;
         formula = 'imperial';
     }
-
     return unitValue;
 }
 
@@ -33,8 +32,6 @@ const getWeightUnitValue = () => {
     }
 }
 
-
-
 const getBMI = () => {
     const weight = document.querySelector('.weight').value;
     const height = document.querySelector('.height').value;
@@ -47,20 +44,36 @@ const getBMI = () => {
     } else if (formula === 'metric') {
         value = metricBmiFormula;
     }
-
     return value;
 }
 
 const displayBMI = () => {
+
     const score = document.querySelector('.container__score');
     const element = document.createElement('p');
-    const value = getBMI();
-    console.log(value);
-    element.textContent = value;
+    const value = getBMI().toFixed(2);
+    let spanText = '';
+
+    if (document.querySelector('p')) {
+        document.querySelector('p').remove();
+    }
+
     score.appendChild(element);
+
+    if (value <= 18.50) {
+        spanText = 'Underweight';
+        element.innerHTML = `Your BMI is ${value}. You have <span class='underweight'>${spanText}.</span>`;
+    } else if (value > 18.50 && value <= 24.99) {
+        spanText = 'Normal weight';
+        element.innerHTML = `Your BMI is ${value}. You have <span class='normal'>${spanText}.</span>`;
+    } else if (value > 24.99 && value <= 29.99) {
+        spanText = 'Overweight';
+        element.innerHTML = `Your BMI is ${value}. You have <span class='overweight'>${spanText}.</span>`;
+    } else if (value > 29.99) {
+        spanText = 'Obesity';
+        element.innerHTML = `Your BMI is ${value}. You have <span class='obesity'>${spanText}</span>`;
+    }
 }
-
-
 
 heightUnits.addEventListener('change', getHeightUnitValue);
 weightUnits.addEventListener('change', getWeightUnitValue);
