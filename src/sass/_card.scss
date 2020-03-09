@@ -1,11 +1,11 @@
 @import './variables';
 
 .container {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -14,6 +14,7 @@
     height: 60vh;
     border-radius: 1%;
     font-family: $font-family;
+    z-index: 1;
 
     &__header {
       display: flex;
@@ -26,10 +27,12 @@
       color: $font-color;
       h1 {
         font-size: 2rem;
-        color: palegreen;
+        color: $decoration-color;
         text-transform: uppercase;
+        margin-top: 30px 0;
       }
       h2 {
+        margin-top: 30px 0;
         font-size: 1.6rem;
         
       }
@@ -42,14 +45,54 @@
       align-items: center;
       flex-basis: 60%;
       width: 100%;
+
+      .container__panel-element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        & label {
+          flex-basis: 30%;
+          text-align: center;;
+        }
+
+        & input[type="number"] {
+          flex-basis: 40%;
+          background-color: white;
+          border-radius: $border-radius;
+          text-align: center;
+          border: 2px solid #555;
+          cursor: pointer;
+        }
+
+        & select {
+          flex-basis: 30%;
+          border-radius: $border-radius;
+          cursor: pointer;
+        }
+      }
     }
 
     &__button {
       text-align: center;
-      width: 150px;
+      width: 200px;
       height: 50px;
       border: 2px solid white;
-
+      background-color: transparent;
+      border-radius: $border-radius;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: white;
+      transition: 0.3s;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        background-color: $decoration-color;
+        color: black;
+      }
     }
 
     &__score {
@@ -62,7 +105,7 @@
       font-size: 1.1rem;
   
       .underweight {
-        color: blue;
+        color: turquoise;
       }
 
       .normal {
@@ -76,28 +119,109 @@
       .obesity {
         color: red;
       }
-    }
+
+      .bold {
+        color: $decoration-color;
+      }
+    }  
   }
 
   label {
     font-size: 1.1rem;
     color: $font-color;
+    margin-right: 10px;
   }
   
   input {
     width: 200px;
-    height: 25px;
+    height: 40px;
+    &:focus {
+      outline: none;
+    }
   }
   
   select {
+    margin: 0 10px;
     width: 100px;
-    height: 31px;
+    height: 47px;
+    &:focus {
+      outline: none;
+    }
   }
 
-  @media (min-width: 640px) and (orientation: landscape) {
+  @media (min-width: 320px) and (orientation: portrait) {
+    .container {
+      max-width: 95%;
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      .container__panel-element {
+        flex-wrap: wrap;
+
+        label {
+          flex-basis: 100%;
+          padding: 10px 0;
+        }
+      }
+
+      .container__score {
+        text-align: center;
+        font-size: 1rem; 
+        p {
+          padding: 0 25px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 320px) and (orientation: landscape) {
+    .container {
+      max-width: 95%;
+        height: 90%;
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      h2 {
+        display: none;
+      }
+
+      .container__panel-element {
+        flex-wrap: wrap;
+
+        label {
+          flex-basis: 100%;
+          padding: 10px 0;
+        }
+      }
+
+      .container__score {
+        text-align: center;
+        font-size: 1rem; 
+        p {
+          padding: 0 25px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 640px) and (orientation: portrait) {
     .container {
       max-width: 70%;
     }
+
+    label {
+      width: 100%;
+    }
+
+    
   }
 
   @media (min-width: 1024px) and (orientation: landscape) {

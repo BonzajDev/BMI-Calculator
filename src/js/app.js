@@ -1,6 +1,6 @@
 const heightUnits = document.getElementById('heightunits');
 const weightUnits = document.getElementById('weightunits');
-const button = document.querySelector('button');
+const button = document.querySelector('.container__button');
 let formula = '';
 
 const getHeightUnitValue = () => {
@@ -33,11 +33,11 @@ const getWeightUnitValue = () => {
 }
 
 const getBMI = () => {
-    const weight = document.querySelector('.weight').value;
-    const height = document.querySelector('.height').value;
+    const weightInput = document.querySelector('.container__weight');
+    const heightInput = document.querySelector('.container__height');
+    const metricBmiFormula = (weightInput.value / ((heightInput.value * heightInput.value) / getHeightUnitValue()) * 100);
+    const imperialBmiFormula = 703 * weightInput.value / (heightInput.value * heightInput.value);
     let value = '';
-    const metricBmiFormula = (weight / ((height * height) / getHeightUnitValue()) * 100);
-    const imperialBmiFormula = 703 * weight / (height * height);
 
     if (formula === 'imperial') {
         value = imperialBmiFormula;
@@ -52,29 +52,36 @@ const displayBMI = () => {
     const score = document.querySelector('.container__score');
     const element = document.createElement('p');
     const value = getBMI().toFixed(2);
-    let spanText = '';
+    let result = '';
 
     if (document.querySelector('p')) {
         document.querySelector('p').remove();
     }
 
+
+
     score.appendChild(element);
 
     if (value <= 18.50) {
-        spanText = 'Underweight';
-        element.innerHTML = `Your BMI is ${value}. You have <span class='underweight'>${spanText}.</span>`;
+        result = 'underweight';
+        element.innerHTML = `Your BMI is <span class="bold">${value}</span>. You have <span class='underweight'>${result}</span>.`;
     } else if (value > 18.50 && value <= 24.99) {
-        spanText = 'Normal weight';
-        element.innerHTML = `Your BMI is ${value}. You have <span class='normal'>${spanText}.</span>`;
+        result = 'normal weight';
+        element.innerHTML = `Your BMI is <span class="bold">${value}</span>. You have <span class='normal'>${result}</span>.`;
     } else if (value > 24.99 && value <= 29.99) {
-        spanText = 'Overweight';
-        element.innerHTML = `Your BMI is ${value}. You have <span class='overweight'>${spanText}.</span>`;
+        result = 'overweight';
+        element.innerHTML = `Your BMI is <span class="bold">${value}</span>. You have <span class='overweight'>${result}</span>.`;
     } else if (value > 29.99) {
-        spanText = 'Obesity';
-        element.innerHTML = `Your BMI is ${value}. You have <span class='obesity'>${spanText}</span>`;
+        result = 'obesity';
+        element.innerHTML = `Your BMI is <span class="bold">${value}</span>. You have <span class='obesity'>${result}</span>.`;
+    } else if (value === -1) {
+        element.innerHTML = `Insert correct height or weight value`;
     }
 }
+
+
 
 heightUnits.addEventListener('change', getHeightUnitValue);
 weightUnits.addEventListener('change', getWeightUnitValue);
 button.addEventListener('click', displayBMI);
+button.addEventListener('touchdown', displayBMI);
