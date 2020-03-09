@@ -39,6 +39,10 @@ const getBMI = () => {
     const imperialBmiFormula = 703 * weightInput.value / (heightInput.value * heightInput.value);
     let value = '';
 
+    if (!weightInput.value || !heightInput.value) {
+        alert('Insert height or/and weight values');
+    }
+
     if (formula === 'imperial') {
         value = imperialBmiFormula;
     } else if (formula === 'metric') {
