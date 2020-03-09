@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <title>BMI Calculator</title>
+<link href="/main.css" rel="stylesheet"></head>
+
+<body>
+  <div class="container">
+
+    <div class="container__header">
+      <h1>bmi calculator</h1>
+      <h2>Calculate yours!</h2>
+    </div>
+
+    <div class="container__panel">
+
+      <label for="">Height</label>
+      <div class="container__height-panel">
+        <input type="text" class="height" placeholder="">
+
+        <select name="" id="heightunits">
+          <option value="units" selected disabled>Units</option>
+          <option value="cm">cm</option>
+          <option value="inch">inch</option>
+        </select>
+      </div>
+
+      <label for="">Weight</label>
+      <div class="container__weight-panel">
+        <input type="text" class="weight" placeholder="">
+        <select name="" id="weightunits">
+          <option value="units" selected disabled>Units</option>
+          <option value="kg">kg</option>
+          <option value="lbs">lbs</option>
+        </select>
+      </div>
+
+    </div>
+    <button class="container__button">Calculate</button>
+
+    <div class="container__score"></div>
+  </div>
+
+
+<script type="text/javascript" src="/main.bundle.js"></script></body>
+
+</html>
