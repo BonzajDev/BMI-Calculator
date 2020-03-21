@@ -1,0 +1,276 @@
+// @import './variables';
+
+.container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 80%;
+    height: 60vh;
+    border-radius: $border-radius;
+    font-family: $font-family;
+    overflow: hidden;
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-basis: 20%;
+      text-align: center;
+      color: $font-color;
+      background-color: #ddd;
+      border-radius: $border-radius;
+      
+      h1 {
+        font-size: 2rem;
+        color: black;
+        text-transform: uppercase;
+        margin-top: 30px 0;
+        font-weight: bold;
+      }
+      
+    }
+
+    &__panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 50%;
+      width: 100%;
+
+      .container__panel-element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        & label {
+          flex-basis: 30%;
+          text-align: center;
+          color: black;
+        }
+
+        & input[type="number"] {
+          flex-basis: 40%;
+          background-color: white;
+          border-radius: $border-radius;
+          text-align: center;
+          font-size: 1.3rem;
+          cursor: pointer;
+        }
+
+        & select {
+          flex-basis: 30%;
+          border-radius: $border-radius;
+          font-size: 1.2rem;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__button {
+      text-align: center;
+      width: 200px;
+      height: 50px;
+      border: 2px solid darkgreen;
+      background-color: green;
+      border-radius: $border-radius;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      color: white;
+      transition: 0.3s;
+      margin-bottom: 20px;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        background-color: forestgreen;
+        color: black;
+      }
+    }
+
+    &__score {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 25%;
+      width: 100%;
+      font-size: 1.1rem;
+      color: white;
+      background-color: #222;
+
+      .underweight {
+        color: turquoise;
+        font-weight: bold;
+      }
+      .normal {
+        color: green;
+        font-weight: bold;
+      }
+      .overweight {
+        color: orange;
+        font-weight: bold;
+      }
+      .alert {
+        color: red;
+        font-weight: bold;
+      }
+      .bold {
+        color: $decoration-color;
+      }
+    }  
+  }
+
+  label {
+    font-size: 1.1rem;
+    color: $font-color;
+    margin-right: 10px;
+  }
+  
+  input {
+    width: 200px;
+    height: 40px;
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  select {
+    margin: 0 10px;
+    width: 100px;
+    height: 47px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  @media (min-width: 320px) and (orientation: portrait) {
+    .container {
+      max-width: 95%;
+      height: 80%;
+
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .container__panel-element {
+        flex-wrap: wrap;
+
+        label {
+          flex-basis: 100%;
+          padding: 10px 0;
+        }
+
+        input {
+          width: 40%;
+          
+        }
+        input::placeholder {
+          color: white;
+        }
+      }
+
+      .container__score {
+        text-align: center;
+        font-size: 1rem; 
+        p {
+          padding: 0 25px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 320px) and (orientation: landscape) {
+    .container {
+      max-width: 95%;
+        height: 90%;
+
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .container__panel {
+        margin-top: 20px;
+        .container__panel-element {
+          flex-wrap: wrap;
+          label {
+            display: none;
+          }
+        }
+      }
+      .container__score {
+        text-align: center;
+        font-size: 1rem; 
+        p {
+          padding: 0 25px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 640px) and (orientation: portrait) {
+    .container {
+      max-width: 70%;
+      &__header {
+        h1 {
+          font-size: 2rem;
+        }
+        
+      }
+      &__panel {
+        justify-content: space-evenly;
+
+        input {
+          height: 60px;
+        }
+
+        select {
+          height: 67px;
+        }
+
+        label {
+          width: 100%;
+          font-size: 1.4rem;
+        }
+      }
+
+      &__button {
+        width: 300px;
+        height: 70px;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) and (orientation: landscape) {
+    .container {
+      .container__header h1 {
+        font-size: 2.2rem;
+      }
+      .container__panel {
+        justify-content: space-evenly;
+      }
+    }
+    
+  }
+
+  @media (min-width: 1024px) and (orientation: landscape) {
+    .container {
+      max-width: 50%;
+    }
+  }
+
+  @media (min-width: 1280px) and (orientation: landscape) {
+    .container {
+      width: 30%;
+      height: 60%;
+    }
+  }
