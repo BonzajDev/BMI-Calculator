@@ -1,46 +1,52 @@
-const heightUnits = document.getElementById('heightunits');
-const weightUnits = document.getElementById('weightunits');
+const heightSelector = document.getElementById('heightunits');
+const weightSelector = document.getElementById('weightunits');
 const button = document.querySelector('.container__button');
+const score = document.querySelector('.container__score');
 let formula = '';
 
-const getHeightUnitValue = () => {
-    const units = heightUnits.options[heightUnits.selectedIndex].value;
+const getHeightUnit = () => {
+    const units = heightSelector.options[heightSelector.selectedIndex].value;
     let unitValue = '';
 
     if (units === 'cm') {
         unitValue = 100;
-        weightUnits.selectedIndex = 1;
+        weightSelector.selectedIndex = 1;
         formula = 'metric';
-
     } else if (units === 'inch') {
-        weightUnits.selectedIndex = 2;
+        weightSelector.selectedIndex = 2;
         formula = 'imperial';
+    } else if (units === 'units') {
+        score.innerHTML = "<p class='alert'>Pick height units!</p>";
     }
     return unitValue;
 }
 
-const getWeightUnitValue = () => {
-    const units = weightUnits.options[weightUnits.selectedIndex].value;
+const getWeightUnit = () => {
+    const units = weightSelector.options[weightSelector.selectedIndex].value;
 
     if (units === 'kg') {
-        heightUnits.selectedIndex = 1;
+        heightSelector.selectedIndex = 1;
         formula = 'metric';
-
     } else if (units === 'lbs') {
-        heightUnits.selectedIndex = 2;
+        heightSelector.selectedIndex = 2;
         formula = 'imperial';
+    } else if (units === 'units') {
+        score.innerHTML = "<p class='alert'>Pick weight units!</p>";
     }
 }
 
 const getBMI = () => {
     const weightInput = document.querySelector('.container__weight');
     const heightInput = document.querySelector('.container__height');
-    const metricBmiFormula = (weightInput.value / ((heightInput.value * heightInput.value) / getHeightUnitValue()) * 100);
+    const metricBmiFormula = (weightInput.value / ((heightInput.value * heightInput.value) / getHeightUnit()) * 100);
     const imperialBmiFormula = 703 * weightInput.value / (heightInput.value * heightInput.value);
     let value = '';
 
     if (!weightInput.value || !heightInput.value) {
-        alert('Insert height or/and weight values');
+        score.innerHTML = "<p class='alert'>Insert height or/and weight values</p>";
+
+    } else if (weightInput.value <= 0 || heightInput.value <= 0) {
+        score.innerHTML = "<p class='alert'>Input value cannot be less or equal to 0!</p>";
     }
 
     if (formula === 'imperial') {
@@ -52,8 +58,6 @@ const getBMI = () => {
 }
 
 const displayBMI = () => {
-
-    const score = document.querySelector('.container__score');
     const element = document.createElement('p');
     const value = getBMI().toFixed(2);
     let result = '';
@@ -61,8 +65,6 @@ const displayBMI = () => {
     if (document.querySelector('p')) {
         document.querySelector('p').remove();
     }
-
-
 
     score.appendChild(element);
 
@@ -77,15 +79,13 @@ const displayBMI = () => {
         element.innerHTML = `Your BMI is <span class="bold">${value}</span>. You have <span class='overweight'>${result}</span>.`;
     } else if (value > 29.99) {
         result = 'obesity';
-        element.innerHTML = `Your BMI is <span class="bold">${value}</span>. You have <span class='obesity'>${result}</span>.`;
+        element.innerHTML = `Your BMI is <span class="bold">${value}</span>. You have <span class='alert'>${result}</span>.`;
     } else if (value === -1) {
         element.innerHTML = `Insert correct height or weight value`;
     }
 }
 
-
-
-heightUnits.addEventListener('change', getHeightUnitValue);
-weightUnits.addEventListener('change', getWeightUnitValue);
+heightSelector.addEventListener('change', getHeightUnit);
+weightSelector.addEventListener('change', getWeightUnit);
 button.addEventListener('click', displayBMI);
 button.addEventListener('touchdown', displayBMI);
